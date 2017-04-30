@@ -21,12 +21,17 @@ graph_insert_vertex(graph_t g, vertex_t v)
 	if (g->v == NULL) {
 		/* Insert vertex into empty graph */
 		g->v = v;
+		//Modified part
+		g->v->next = NULL;
 		return;
 	}
 	/* Insert at the end of the double linked list */
 	for (w = g->v; w->next != NULL; w = w->next);
 	w->next = v;
 	v->prev = w;
+
+	//Modified part
+	w->next->next= NULL;
 }
 
 vertex_t
@@ -65,12 +70,18 @@ graph_insert_edge(graph_t g, edge_t e)
 	if (g->e == NULL) {
 		/* Insert edge into empty graph edge set */
 		g->e = e;
+
+		//Modified part
+		g->e->next = NULL;
 		return;
 	}
 	/* Insert at the end of the double linked list */
 	for (f = g->e; f->next != NULL; f = f->next);
 	f->next = e;
 	e->prev = f;
+	
+	//Modified part
+	f->next->next=NULL;
 }
 
 void
